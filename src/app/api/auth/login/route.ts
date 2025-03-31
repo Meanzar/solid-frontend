@@ -25,7 +25,10 @@ export async function POST(request: NextRequest) {
         }
 
 
-        return new Response(JSON.stringify(authData), {
+        const token = authData?.session?.access_token;
+
+
+        return new Response(JSON.stringify({user: authData, token}), {
             status: 200,
             headers: { "Content-Type": "application/json" }
         });
