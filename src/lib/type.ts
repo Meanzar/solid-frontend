@@ -8,3 +8,6 @@ export type Article = {
     content: string[],
 
       }
+      export type Params = {
+        id: number
+      }

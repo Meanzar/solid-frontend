@@ -1,10 +1,7 @@
 export async function getNews(url: string) { 
     const apikey = process.env.NEXT_PUBLIC_NEWS_API_KEY
     const response = await fetch(url + 'apiKey=' + apikey, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }   
+        method: 'GET'
     })
 
     return response.json()
