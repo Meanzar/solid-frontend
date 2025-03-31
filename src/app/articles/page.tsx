@@ -2,10 +2,11 @@
 
 import { getNews } from '@/lib/api'
 import { Article } from '@/lib/type'
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
 
-export default function HomePage() {
+export default function ArticlePage() {
     const base_url = `https://newsapi.org/v2/everything?q=keyword&`
     const special_url = `https://newsapi.org//v2/top-headlines?country=us&`
     const [news, setNews] = useState({articles: []})
@@ -25,9 +26,9 @@ export default function HomePage() {
             ))}
         <h2>News</h2>
             {news.articles.map((article: Article, index) => (
-                <div key={index}>
+                <Link href={'/articles' + index} key={'de' + index}>
                     <h1>{article.title}</h1>
-                </div>
+                </Link>
             ))}
     </div>
   )
