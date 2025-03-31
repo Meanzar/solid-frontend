@@ -14,6 +14,8 @@ export default function HomePage() {
         getNews(base_url).then((data) => setNews(data))
         getNews(special_url).then((data) => setTops(data))
     }, [])
+
+    console.log(news)
   return (
     <div>
         <h1>Dashboard</h1>
