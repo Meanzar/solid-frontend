@@ -36,7 +36,7 @@ export default function ArticlePage({params}: {params: Params}) {
     if (!article) {
       return <div>Article not found</div>;
     }
-  
+
     return (
       <div>
         <h1>{article.title}</h1>
