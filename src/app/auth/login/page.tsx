@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { checkSession, postData } from '@/lib/api'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useRouter} from 'next/navigation'
 
 export default function LoginPage() {
@@ -14,8 +14,7 @@ export default function LoginPage() {
         e.preventDefault()
 
         try { 
-
-          const login = await postData(base_url, { email, password})
+          const login = await postData(base_url, { email, password,})
           console.log(login.token)
           if ( login.length === 0) {
             throw new Error('Failed to fetch')
@@ -25,7 +24,7 @@ export default function LoginPage() {
           const session = await checkSession()
           console.log(session)
           if (session) {
-            router.push('/')
+            router.push('/menu')
           } else {
             console.log('No session')
           }
@@ -38,15 +37,6 @@ export default function LoginPage() {
     function handleChange(set: any, e: any) {
            set(e.target.value)
     }
-    useEffect(() => {
-      async function verifySession() {
-        const session =  await checkSession()
-        if (session) {
-          router.push('/')
-        }
-      }
-      verifySession()
-    }, [])
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">

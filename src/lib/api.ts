@@ -1,15 +1,10 @@
 export async function getNews(url: string) { 
     const apikey = process.env.NEXT_PUBLIC_NEWS_API_KEY
     const response = await fetch(url + 'apiKey=' + apikey, {
-        method: 'GET'
-    })
-
-    return response.json()
-}
-
-export async function getData(url: string) {
-    const response = await fetch(url, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }   
     })
 
     return response.json()
@@ -25,6 +20,7 @@ export async function postData(url: string, data: any) {
 }
 export async function checkSession(): Promise<boolean> {
     const token = sessionStorage.getItem('token'); 
+    console.log(token)
     if (!token) {
         console.warn('No token found in sessionStorage');
         return false;
@@ -51,10 +47,4 @@ export async function checkSession(): Promise<boolean> {
     //     console.error('Error validating token:', error);
     //     return false;
     // }
-}
-
-export async function logout() {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
-    return true;
 }
