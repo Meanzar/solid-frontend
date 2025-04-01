@@ -1,6 +1,17 @@
 import { getSupabaseClient } from '@/lib/supabase'
 import { NextRequest } from 'next/server'
+import { faker } from '@faker-js/faker'
 
+export async function GET(request: NextRequest) {
+    const supabase = getSupabaseClient();
+    const {data, error} = await supabase
+        .from('users')
+        .select('*');
+    return new Response(JSON.stringify(data), {
+        status: 200,
+        headers: { "Content-Type": "application/json" }
+    });
+}
 export async function POST(request: NextRequest) {
     const supabase = getSupabaseClient();
     
@@ -26,7 +37,11 @@ export async function POST(request: NextRequest) {
 
 
         const token = authData?.session?.access_token;
-
+        const randomName = faker.person.fullName();
+        const randomJob = faker.person.jobType();
+        const {error} = await supabase.from('users').insert(
+            { name: randomName, job: randomJob, year: 30}
+        );
 
         return new Response(JSON.stringify({user: authData, token}), {
             status: 200,
