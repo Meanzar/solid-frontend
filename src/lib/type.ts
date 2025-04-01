@@ -18,6 +18,7 @@ export const UserSchema = z.object({
   year: z.number(),
   job: z.string(),
   name: z.string(),
+  country: z.string(),
   created_at: z.string(),
 });
 // Types dérivés des schémas Zod
