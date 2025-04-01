@@ -1,5 +1,4 @@
 "use client"
-
 import { getNews } from '@/lib/api'
 import { Article } from '@/lib/type'
 import { Params } from '@/lib/type'
